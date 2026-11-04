@@ -1,4 +1,4 @@
-# SpendSense — Smart Budget Monitoring System with Threshold Alerts
+# SpendSense – Smart Budget Monitoring System
 
 **Capstone ID:** CP-002  
 **Domain:** Banking and FinTech  
@@ -8,190 +8,205 @@
 
 ---
 
-## 📌 Project Overview
+## 1. Project Overview
 
-**SpendSense** is a personal finance management application designed to help students and young professionals monitor their spending, manage monthly budgets, and avoid overspending.
+SpendSense is a Python-based personal finance management application designed to help students and young professionals record expenses, manage monthly budgets, monitor spending patterns, and avoid overspending.
 
-Many people struggle to understand where their money goes before the end of the month. SpendSense addresses this problem by organizing expenses into categories, comparing actual expenditure against predefined budgets, and generating alerts when spending reaches critical thresholds.
+The application provides a menu-driven command-line interface (CLI) through which users can manage expenses, configure category-wise monthly budgets, receive threshold alerts, generate financial summaries, compare monthly spending, and export expense records.
 
-The application provides a centralized dashboard for tracking expenses, reviewing monthly financial summaries, and identifying the five largest expenses in a selected month.
+SpendSense uses JSON files for persistent data storage and Python modules for expense management, budget calculations, alerts, and reporting.
 
-## 🎯 Problem Statement
+## 2. Problem Statement
 
-Students and young professionals often exceed their monthly budgets because they lack a simple, structured way to record expenses and monitor category-wise spending.
+Students and young professionals often exceed their monthly budgets because they lack a simple and structured way to record expenses and monitor category-wise spending.
 
-SpendSense aims to provide an accessible solution that enables users to record transactions, set spending limits, receive timely budget alerts, and make informed financial decisions.
+SpendSense addresses this problem by providing an accessible system for recording transactions, setting monthly spending limits, tracking budget utilization, and generating timely alerts when spending reaches critical thresholds.
 
-## 🎯 Project Objectives
+## 3. Project Objectives
 
 - Simplify daily expense tracking.
 - Enable monthly budget allocation by expense category.
-- Alert users when spending reaches 80% and 100% of a category budget.
-- Provide monthly spending summaries and budget comparisons.
-- Identify the five largest expenses of the month.
-- Encourage better financial awareness and spending habits.
+- Generate alerts when spending reaches 80% and 100% of a budget.
+- Provide monthly spending summaries.
+- Identify the five largest expenses in a selected month.
+- Compare spending between consecutive months.
+- Export monthly expense records into CSV format.
+- Improve financial awareness through structured spending reports.
 
-## ✨ Core Features
+## 4. Features and Functionality
 
-The following five features are mandatory according to the CP-002 problem statement.
+### 4.1 Expense Management
+- Add expenses with date, category, amount, and note.
+- View all recorded expenses.
+- Edit existing expense records.
+- Delete expense records.
+- Filter expenses by month.
+- Persist expense records using JSON storage.
 
-### 1. Expense Management
-- Add an expense with its date, category, amount, and a short note.
-- View recorded expenses.
-- Organize transactions by category and month.
+### 4.2 Monthly Category Budgets
+- Set monthly budgets for individual categories.
+- View configured budgets.
+- Update existing budget allocations.
+- Delete budget records through the budget service.
+- Calculate spending against allocated budgets.
 
-### 2. Monthly Category Budgets
-- Set a monthly spending limit for each category.
-- Track actual spending against allocated budgets.
-- Calculate the remaining budget and percentage utilized.
+### 4.3 Budget Threshold Alerts
+- **80% alert:** Notify the user when spending crosses 80% of the category budget.
+- **100% alert:** Notify the user when spending reaches or exceeds the full budget.
+- Detect transactions that cross both thresholds.
+- Avoid duplicate alerts when a threshold has already been crossed.
+- Handle zero-budget cases safely.
 
-### 3. Budget Threshold Alerts
-- **80% alert:** Notify the user when category spending reaches 80% of its budget.
-- **100% alert:** Notify the user when category spending reaches or exceeds its budget.
-- Avoid repeatedly triggering the same threshold alert during routine dashboard refreshes.
+### 4.4 Monthly Budget Status
+Display:
+- Category-wise spending.
+- Allocated budget.
+- Remaining budget.
+- Budget utilization percentage.
+- Budget-exceeded status.
+- Overall monthly spending and budget totals.
 
-### 4. Monthly Summary Dashboard
-- Display total expenditure for the selected month.
-- Compare spending against the budget for each category.
-- Show budget utilization and remaining amounts.
+### 4.5 Monthly Summary
+Generate a monthly report containing:
+- Total expenditure.
+- Total allocated budget.
+- Remaining budget.
+- Overall budget utilization.
+- Category-wise financial summaries.
 
-### 5. Top 5 Largest Expenses
-- Display the five highest-value expenses in the selected month.
-- Sort transactions by amount in descending order.
-- Show the date, category, amount, and note for each transaction.
+### 4.6 Top 5 Largest Expenses
+- Identify the five largest expenses for a selected month.
+- Sort expenses in descending order of amount.
+- Display transaction ID, date, category, amount, and note.
 
-## 🌟 Optional Enhancements
+### 4.7 Month-over-Month Comparison
+- Compare the selected month with the previous month.
+- Calculate category-wise spending differences.
+- Display percentage changes when previous-month spending is nonzero.
+- Identify increasing and decreasing spending trends.
 
-The following stretch features can be implemented after completing the mandatory requirements.
+### 4.8 CSV Export
+- Export monthly expense records into CSV files.
+- Include transaction ID, date, category, amount, and note.
+- Generate month-specific export files.
 
-- Month-over-month spending comparison by category.
-- Export monthly expense records to CSV.
-- Interactive spending charts and visual reports.
-- User authentication and personalized dashboards.
-- Responsive design for mobile and desktop devices.
-
-## 🛠️ Technology Stack
-
-The proposed technology stack is listed below. Replace any technology that differs from the team's actual implementation.
+## 5. Technology Stack
 
 | Component | Technology |
 |---|---|
-| Frontend | React.js |
-| Frontend Tooling | Vite |
-| Backend | Python, FastAPI |
-| Database | PostgreSQL |
-| Data Visualization | Recharts |
-| API Documentation | FastAPI / Swagger UI |
-| Testing | Pytest |
-| Version Control | Git and GitHub |
+| Programming Language | Python |
+| Application Interface | Command-Line Interface (CLI) |
+| Data Storage | JSON |
+| Data Export | CSV |
+| Testing Framework | Pytest |
+| Version Control | Git |
+| Repository Hosting | GitHub |
+| Development Environment | Visual Studio Code |
 
-## 🏗️ System Architecture
+## 6. System Architecture
+
+SpendSense follows a modular, service-oriented Python architecture.
 
 ```text
-                  +----------------------+
-                  |         User         |
-                  +----------+-----------+
+                 +-----------------------+
+                 |         User          |
+                 +-----------+-----------+
                              |
                              v
-                  +----------------------+
-                  |    React Frontend    |
-                  +----------+-----------+
+                 +-----------------------+
+                 |      main.py          |
+                 |   CLI / Menu System   |
+                 +-----------+-----------+
                              |
-                       REST API Calls
-                             |
-                             v
-                  +----------------------+
-                  |    FastAPI Backend   |
-                  +----------+-----------+
-                             |
-                +------------+------------+
-                |                         |
-                v                         v
-       +----------------+       +----------------+
-       | Expense Service|       |  Budget Service|
-       +--------+-------+       +--------+-------+
-                |                         |
-                +------------+------------+
-                             |
-                             v
-                  +----------------------+
-                  | PostgreSQL Database  |
-                  +----------+-----------+
-                             |
-                             v
-                  +----------------------+
-                  | Budget Analysis and  |
-                  | Threshold Alert Logic|
-                  +----------+-----------+
-                             |
-                             v
-                  +----------------------+
-                  | Monthly Summary and  |
-                  | Top 5 Expense Report |
-                  +----------------------+
+             +---------------+----------------+
+             |               |                |
+             v               v                v
+     +---------------+ +-------------+ +---------------+
+     | Expense       | | Budget      | | Report        |
+     | Service       | | Service     | | Service       |
+     +-------+-------+ +------+------+ +-------+-------+
+             |                |                |
+             |                v                |
+             |        +---------------+        |
+             |        | Alert Service |        |
+             |        +---------------+        |
+             |                |                |
+             +----------------+----------------+
+                              |
+                              v
+                    +-------------------+
+                    |  Storage Module   |
+                    +---------+---------+
+                              |
+                   +----------+----------+
+                   |                     |
+                   v                     v
+             +-----------+         +-----------+
+             | expenses  |         | budgets   |
+             | .json     |         | .json     |
+             +-----------+         +-----------+
+
+                    CSV Export Module
+                              |
+                              v
+                    +-------------------+
+                    | Monthly CSV Files |
+                    +-------------------+
 ```
 
-## 📊 Budget Calculation
+### Architecture Components
 
-### Budget Utilization
+- **main.py:** Handles the interactive menu and coordinates application services.
+- **expense_service.py:** Implements expense creation, viewing, editing, and deletion.
+- **budget_service.py:** Manages monthly category budgets.
+- **alert_service.py:** Calculates budget utilization and detects threshold crossings.
+- **report_service.py:** Generates monthly summaries, top-five expense reports, and monthly comparisons.
+- **storage.py:** Handles persistent JSON data operations.
+- **csv_export.py:** Exports monthly expense records.
+- **validators.py:** Handles input validation.
 
-`Budget Utilization (%) = (Total Category Spending / Monthly Category Budget) × 100`
-
-### Remaining Budget
-
-`Remaining Budget = Monthly Category Budget − Total Category Spending`
-
-### Example
-
-| Category | Monthly Budget | Amount Spent | Utilization | Status |
-|---|---:|---:|---:|---|
-| Food | ₹3,000 | ₹1,500 | 50% | Within budget |
-| Transport | ₹2,000 | ₹1,700 | 85% | 80% threshold crossed |
-| Shopping | ₹2,500 | ₹2,600 | 104% | Budget exceeded |
-
-*The figures above are illustrative examples, not actual application data.*
-
-## 📁 Project Structure
-
-The following is a suggested repository structure. Adapt it to the files and folders created by your team.
+## 7. Project Structure
 
 ```text
 CP_2_spendsense/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── App.jsx
-│   └── package.json
 │
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   ├── services/
-│   │   ├── database.py
-│   │   └── main.py
-│   ├── tests/
-│   └── requirements.txt
-│
-├── screenshots/
+├── main.py
+├── requirements.txt
+├── README.md
 ├── .gitignore
-└── README.md
+│
+├── data/
+│   ├── expenses.json
+│   └── budgets.json
+│
+├── spendsense/
+│   ├── __init__.py
+│   ├── expense_service.py
+│   ├── budget_service.py
+│   ├── alert_service.py
+│   ├── report_service.py
+│   ├── storage.py
+│   ├── csv_export.py
+│   └── validators.py
+│
+├── exports/
+│
+└── tests/
+    ├── __init__.py
+    ├── test_alerts.py
+    ├── test_budgets.py
+    ├── test_csv_export.py
+    ├── test_expenses.py
+    └── test_reports.py
 ```
 
-## ⚙️ Installation and Setup
+## 8. Installation and Setup
 
 ### Prerequisites
 
-Install the following tools before running the project:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/)
-- [Python](https://www.python.org/)
-- [PostgreSQL](https://www.postgresql.org/)
+- Python 3.10 or later (Python 3.13.2 was used during project verification).
+- Git.
+- Visual Studio Code or another Python-compatible editor.
 
 ### Step 1: Clone the Repository
 
@@ -200,14 +215,13 @@ git clone https://github.com/Anjlee-hub/cp-004-spendsense.git
 cd cp-004-spendsense
 ```
 
-### Step 2: Configure the Backend
+### Step 2: Create a Virtual Environment
 
 ```bash
-cd backend
 python -m venv .venv
 ```
 
-Activate the virtual environment.
+### Step 3: Activate the Virtual Environment
 
 **Windows PowerShell:**
 
@@ -215,105 +229,127 @@ Activate the virtual environment.
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+If PowerShell blocks script execution, run:
 
-```bash
-pip install -r requirements.txt
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 ```
 
-Configure the database connection using environment variables or a local `.env` file. Create the PostgreSQL database and apply any required migrations before starting the server.
+Then activate the environment again.
 
-Run the backend:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-API documentation, when the server is running:
-
-`http://127.0.0.1:8000/docs`
-
-### Step 3: Configure the Frontend
-
-Open a separate terminal:
+### Step 4: Install Dependencies
 
 ```bash
-cd frontend
-npm install
-npm run dev
+python -m pip install -r requirements.txt
 ```
 
-Open the local URL displayed by Vite in the terminal.
+### Step 5: Run the Application
 
-> These commands assume the proposed folder structure. Adjust the paths and startup commands to match the actual project.
-
-## 🧪 Testing
-
-Run the backend tests from the backend directory:
+From the project root directory:
 
 ```bash
-pytest
+python main.py
 ```
 
-Important test cases include:
+The SpendSense main menu will appear in the terminal.
 
-- Adding and retrieving expenses.
-- Calculating monthly totals by category.
-- Triggering alerts at 80% and 100%.
-- Handling an expense that crosses both thresholds in a single transaction.
-- Displaying the five largest expenses in the correct order.
-- Handling months with no expenses and categories without configured budgets.
-- Validating expense amounts and dates.
+## 9. Application Menu
 
-## 🔐 Security and Data Integrity
+The application provides the following 12 options:
 
-- Validate all expense inputs on the backend.
-- Use secure database access patterns and parameterized queries or an ORM.
-- Keep database credentials and secret keys outside the source code.
-- Do not commit `.env` files or real financial records.
-- If multiple users are supported, enforce server-side authorization for every user-specific operation.
-- Use decimal-safe arithmetic for monetary values.
-
-## 👥 Team Members and Responsibilities
-
-This project is developed collaboratively by a team of two members.
-
-| Team Member | Responsibilities |
+| Option | Function |
 |---|---|
-| **Member 1 — Anjlee S** | Frontend development, user interface, expense entry screens, dashboard integration, and UI testing |
-| **Member 2 — [Member 2 Name]** | Backend development, database design, budget calculations, threshold alerts, and API testing |
+| 1 | Add Expense |
+| 2 | View All Expenses |
+| 3 | Edit Expense |
+| 4 | Delete Expense |
+| 5 | Set Monthly Budget |
+| 6 | View Monthly Budgets |
+| 7 | View Budget Status |
+| 8 | Generate Monthly Summary |
+| 9 | Show Top 5 Expenses |
+| 10 | Compare Monthly Spending |
+| 11 | Export Monthly Expenses to CSV |
+| 12 | Exit |
 
-**Collaboration:** Both members contribute to requirements analysis, integration, debugging, documentation, testing, and final project delivery.
+## 10. Budget Calculation
 
-*Update these responsibilities to reflect the work actually performed by each team member.*
+### Budget Utilization
 
-## 🎓 Learning Outcomes
+Budget Utilization (%) = (Total Category Spending / Monthly Category Budget) × 100
 
-Through this project, the team gains practical experience in:
+### Remaining Budget
 
-- Full-stack application development.
-- REST API design and integration.
-- Database modelling and CRUD operations.
-- Category-wise aggregation and sorting algorithms.
-- Date-based filtering and monthly calculations.
-- Threshold-based alert logic.
-- Software testing, Git, and collaborative development.
+Remaining Budget = Monthly Category Budget − Total Category Spending
 
-## 🔮 Future Scope
+### Illustrative Example
+
+| Category | Monthly Budget | Amount Spent | Utilization | Status |
+|---|---:|---:|---:|---|
+| Food | ₹3,000 | ₹1,500 | 50% | Within budget |
+| Transport | ₹2,000 | ₹1,700 | 85% | 80% threshold crossed |
+| Shopping | ₹2,500 | ₹2,600 | 104% | Budget exceeded |
+
+*These figures are illustrative examples.*
+
+## 11. Testing
+
+SpendSense uses Pytest for automated unit testing.
+
+Run the test suite from the project root:
+
+```bash
+python -m pytest -v
+```
+
+### Test Coverage
+
+| Test Module | Main Functionality |
+|---|---|
+| test_expenses.py | Expense creation, viewing, editing, deletion, validation, and filtering |
+| test_budgets.py | Budget creation, updating, retrieval, deletion, validation, and persistence |
+| test_alerts.py | Threshold detection, utilization, and edge cases |
+| test_reports.py | Monthly summaries, top-five reports, and month comparisons |
+| test_csv_export.py | CSV generation, empty-month handling, and validation |
+
+### Latest Verification Results
+
+- **Total automated tests:** 43
+- **Passed:** 43
+- **Failed:** 0
+- **Execution time:** 0.58 seconds
+- **Python version:** 3.13.2
+- **Testing framework:** Pytest 9.2.0
+
+All 43 automated tests passed during the final verification after the integration was merged into the GitHub main branch.
+
+## 12. Version Control and Collaboration
+
+The project is maintained using Git and GitHub.
+
+Repository: https://github.com/Anjlee-hub/cp-004-spendsense
+
+The team uses separate feature branches for development, pull requests for code review, and the main branch for integrated application code.
+
+## 13. Future Enhancements
 
 Potential future improvements include:
 
-- Recurring expense tracking.
-- Savings goals and progress monitoring.
-- Automated expense categorization.
-- Personalized spending insights using machine learning.
-- Integration with authorized financial data providers.
-- Downloadable monthly financial reports.
+- Interactive spending charts and visual reports.
+- User authentication and personalized financial dashboards.
+- A graphical user interface.
+- Database integration.
+- Automated recurring expense tracking.
+- Enhanced financial insights and spending recommendations.
 
-## 📄 License
+## 14. Conclusion
 
-This project is developed for academic and educational purposes. An open-source license may be added if the team intends to distribute the code publicly.
+SpendSense provides a modular and practical solution for personal expense tracking and monthly budget monitoring. It combines expense management, budget threshold alerts, financial reporting, month-over-month comparisons, and CSV export in a Python-based command-line application.
+
+The project demonstrates modular programming, JSON-based persistence, input validation, financial calculations, automated testing, and collaborative software development using GitHub.
 
 ---
 
-**SpendSense — Track Smarter. Budget Better. Spend Wisely.**
+**Project:** SpendSense – Smart Budget Monitoring System
+**Capstone ID:** CP-002
+**Domain:** Banking and FinTech
