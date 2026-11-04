@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Test cache
+.pytest_cache/
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
+
+# Generated CSV exports
+exports/*.csv
