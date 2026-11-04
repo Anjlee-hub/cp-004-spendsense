@@ -19,5 +19,5 @@ venv/
 # Temporary files
 *.tmp
 
-# Generated CSV exports
+# Generated CSV files
 exports/*.csv
